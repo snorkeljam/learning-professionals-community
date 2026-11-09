@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Learning Professionals Community</title>
+<meta name="description" content="A cross-sector community for learning professionals working out what AI means for the profession — a working Slack, free live events, and research built from our own answers.">
+<meta property="og:title" content="The Learning Professionals Community">
+<meta property="og:description" content="Corporate L&amp;D, higher ed, K-12, consulting, associations, workforce development. Nobody has the full answer yet — so we're working it out in the open.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://learningprofessionalscommunity.org/">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    background:
+      radial-gradient(900px 420px at 88% -12%, rgba(15,111,104,0.10), transparent 60%),
+      radial-gradient(620px 320px at 4% 8%, rgba(194,86,59,0.07), transparent 62%);
+    padding: 76px 0 56px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 15px 6px 11px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+    box-shadow: var(--shadow-sm);
+  }
+  .hero-eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal); flex-shrink: 0;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5.6vw, 58px);
+    max-width: 21ch;
+    margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: normal; color: var(--teal-deep); }
+  .hero-lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin-bottom: 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat { background: var(--surface); padding: 20px 22px; }
+  .stat .n {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--teal-deep);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .stat .l {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+
+  /* ---------- Benefits ---------- */
+  .benefits { background: var(--surface-alt); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 38px;
+  }
+  .benefit {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 28px 26px;
+    box-shadow: var(--shadow-sm);
+  }
+  .benefit .ico {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: var(--teal-wash);
+    display: grid; place-items: center;
+    margin-bottom: 16px;
+  }
+  .benefit .ico svg { width: 20px; height: 20px; stroke: var(--teal-deep); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .benefit h3 { margin-bottom: 9px; color: var(--ink); }
+  .benefit p { color: var(--muted); font-size: 15.5px; line-height: 1.62; }
+
+  /* ---------- Events ---------- */
+  .events-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .luma-frame {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .luma-frame iframe { display: block; width: 100%; height: 430px; border: 0; }
+
+  .rhythm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .rhythm-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 22px 24px;
+  }
+  .rhythm-card.alt { border-left-color: var(--clay); }
+  .rhythm-kicker {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--teal-deep); margin-bottom: 7px;
+  }
+  .rhythm-card.alt .rhythm-kicker { color: var(--clay-deep); }
+  .rhythm-card h3 { font-size: 18px; margin-bottom: 7px; }
+  .rhythm-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .rhythm-card .past { font-size: 13.5px; color: var(--muted); margin-top: 11px; padding-top: 11px; border-top: 1px dashed var(--line); }
+  .rhythm-card .past strong { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---------- Research ---------- */
+  .research { background: var(--ink); color: #DCE7E5; }
+  .research h2 { color: #fff; }
+  .research .section-label { color: var(--amber); }
+  .research .lede { color: #AFC3C0; }
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 38px;
+  }
+  .rcard {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: var(--radius);
+    padding: 26px 24px 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  a.rcard:hover { background: rgba(255,255,255,0.085); border-color: rgba(255,255,255,0.24); transform: translateY(-2px); }
+  .rcard .tag {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--amber);
+  }
+  .rcard h3 { color: #fff; font-size: 19px; }
+  .rcard p { font-size: 14.5px; color: #A8BDBA; line-height: 1.6; flex: 1; }
+  .rcard .go { font-size: 14px; font-weight: 600; color: #EFE3CE; margin-top: 4px; }
+  .rcard.static { cursor: default; }
+
+  /* ---------- Join ---------- */
+  .join { background: var(--surface-alt); border-top: 1px solid var(--line-soft); }
+  .join-layout {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 44px;
+    align-items: start;
+  }
+  .join-points { list-style: none; margin-top: 24px; }
+  .join-points li {
+    display: flex; gap: 11px; align-items: flex-start;
+    padding: 9px 0; font-size: 15.5px; color: var(--ink-soft);
+  }
+  .join-points svg { width: 19px; height: 19px; flex-shrink: 0; margin-top: 2px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .join-note {
+    margin-top: 24px; padding: 16px 18px;
+    background: var(--teal-wash); border-radius: 8px;
+    font-size: 14.5px; color: var(--teal-deep); line-height: 1.6;
+  }
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .form-card-head {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--surface);
+  }
+  .form-card-head strong { font-family: var(--serif); font-size: 18px; font-weight: 600; display: block; }
+  .form-card-head span { font-size: 13.5px; color: var(--muted); }
+  .form-card iframe { display: block; width: 100%; height: 1180px; border: 0; }
+
+  @media (max-width: 900px) {
+    .join-layout { grid-template-columns: 1fr; gap: 32px; }
+    .research-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .hero { padding: 48px 0 40px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .benefit-grid, .rhythm { grid-template-columns: 1fr; }
+    .luma-frame iframe { height: 480px; }
+    .form-card iframe { height: 1320px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="#0F6F68"/>
+        <circle cx="11" cy="13" r="3.1" fill="#F6F3ED"/>
+        <circle cx="21" cy="13" r="3.1" fill="#C98A2E"/>
+        <circle cx="16" cy="21.5" r="3.1" fill="#C2563B"/>
+      </svg>
+      <span class="wordmark-text">Learning Professionals<span>Community</span></span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html" class="current">Home</a>
+      <a href="#events">Events</a>
+      <a href="research.html">Research</a>
+      <a href="reading-list.html">Reading list</a>
+      <a href="#join" class="nav-cta">Join</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow"><span class="dot"></span> A cross-sector community · Convened by Jackrabbit LX</div>
+      <h1>Nobody has worked out what AI means for our profession. <em>So let's work it out together.</em></h1>
+      <p class="hero-lede">
+        Corporate learning, higher education, K-12, consulting, association management, workforce
+        development — we are all asking the same questions in separate rooms. This is the room
+        where we ask them together, in the open, with the people actually doing the work.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#join">Join the community</a>
+        <a class="btn btn-ghost" href="#events">See upcoming events</a>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="n">197</div><div class="l">professionals in our skills survey</div></div>
+        <div class="stat"><div class="n">6</div><div class="l">sectors in the conversation</div></div>
+        <div class="stat"><div class="n">500+</div><div class="l">following the events calendar</div></div>
+        <div class="stat"><div class="n">Free</div><div class="l">to join, and it stays free</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Benefits ===== -->
+  <section class="benefits">
+    <div class="wrap">
+      <div class="section-label">Why join</div>
+      <h2>A working community, not a mailing list</h2>
+      <p class="lede">Four things you get the day you join — and keep getting.</p>
+
+      <div class="benefit-grid">
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg></div>
+          <h3>A room that's always open</h3>
+          <p>A working Slack where people post the half-formed thing before it is finished. Ask the question you can't ask at work yet, and get answers from people with no stake in your org chart.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.8v3.4M16 2.8v3.4"/><circle cx="12" cy="15" r="2.2"/></svg></div>
+          <h3>Events, constantly</h3>
+          <p>Live, online, free, and small enough to actually talk. A recurring hands-on hour plus bigger forum sessions that take one hard question at a time. No registration fee, no sales pitch at the end.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14.5"/><path d="M4 19.5A1.5 1.5 0 0 1 5.5 18H20M8 7.5h8M8 11.5h8M8 15h5"/></svg></div>
+          <h3>Research you helped write</h3>
+          <p>197 learning professionals across six sectors told us which skills matter now and what is getting in the way. The report is free, the data is open, and the next round is built from your answers too.</p>
+        </div>
+        <div class="benefit">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9.5" r="4"/><circle cx="15" cy="14.5" r="4"/><path d="M2.5 20.5a6 6 0 0 1 6-4M21.5 20.5a6 6 0 0 0-3-4.4"/></svg></div>
+          <h3>Cross-sector on purpose</h3>
+          <p>AI may be the first force in a generation that genuinely levels the playing field across sectors. The higher-ed answer and the corporate answer are more useful side by side than either is alone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Events ===== -->
+  <section id="events">
+    <div class="wrap">
+      <div class="events-head">
+        <div>
+          <div class="section-label">What's on</div>
+          <h2>Upcoming events</h2>
+          <p class="lede">Everything runs on Luma — free, online, and open to anyone in the community. Register for whichever one is useful.</p>
+        </div>
+        <a class="btn btn-ghost" href="https://luma.com/jlx" target="_blank" rel="noopener">Full calendar →</a>
+      </div>
+
+      <div class="luma-frame">
+        <iframe src="https://luma.com/embed/calendar/cal-mXmLGOjZAUvTh31/events?theme=light" title="Upcoming events calendar" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="rhythm">
+        <div class="rhythm-card">
+          <div class="rhythm-kicker">Recurring · Online</div>
+          <h3>Working Out Loud with the Claudes</h3>
+          <p>A hands-on hour where we build in front of each other — real tools, real work, mistakes included. Drop in for the one that's useful and skip the ones that aren't.</p>
+        </div>
+        <div class="rhythm-card alt">
+          <div class="rhythm-kicker">Forum sessions</div>
+          <h3>One big question at a time</h3>
+          <p>Bigger, facilitated sessions where the community works a single question until there's something to take back to work on Monday.</p>
+          <div class="past"><strong>Recently:</strong> The Learning Professionals Skills Roadmap — what should we learn, and in what order? · Human Advantage in the Era of AI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Research ===== -->
+  <section class="research">
+    <div class="wrap">
+      <div class="section-label">Made together</div>
+      <h2>The work this community has already done</h2>
+      <p class="lede">None of this came from a vendor whitepaper. It came from people in the community answering honestly.</p>
+
+      <div class="research-grid">
+        <a class="rcard" href="research.html">
+          <div class="tag">The report</div>
+          <h3>Future Skills for Learning Professionals</h3>
+          <p>What 197 learning professionals across six sectors said about the skills that matter now, the barriers in the way, and the state of the profession.</p>
+          <div class="go">Explore the results →</div>
+        </a>
+        <a class="rcard" href="reading-list.html">
+          <div class="tag">The landscape</div>
+          <h3>The reading list</h3>
+          <p>Recent skills research from across the field, 2024 to 2026, read and sorted so you don't have to — and a note on where our work fits among it.</p>
+          <div class="go">Browse the list →</div>
+        </a>
+        <div class="rcard static">
+          <div class="tag">In progress</div>
+          <h3>The Skills Roadmap</h3>
+          <p>The community is working out not just which skills matter, but the order to learn them in. Started as a forum session; still open. Join and you're in it.</p>
+          <div class="go">Happening in Slack</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Join ===== -->
+  <section class="join" id="join">
+    <div class="wrap">
+      <div class="join-layout">
+        <div>
+          <div class="section-label">Join</div>
+          <h2>Come in, it's free</h2>
+          <p class="lede">Fill this in and we'll add you to the Slack workspace and the events calendar. Two questions at the end are real — your answers shape what we run next.</p>
+          <ul class="join-points">
+            <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Access to the Slack community</li>
+            <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Invitations to every event, all free</li>
+            <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> The Future Skills report and the data behind it</li>
+            <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> A say in the next round of research</li>
+          </ul>
+          <div class="join-note">
+            No cost, no membership tier, nothing to cancel. We convene it because the
+            conversation is more useful with you in it.
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-head">
+            <strong>Join the community</strong>
+            <span>Takes about a minute</span>
+          </div>
+          <iframe src="https://2w05j.share.hsforms.com/2_YnFYihuTkyVH8qlJ3sFTg" title="Join the Learning Professionals Community" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-name">The Learning Professionals Community</div>
+        <p>A cross-sector community for people who build how other people learn — working out what AI means for the profession, in the open.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Community</h4>
+        <a href="#join">Join</a>
+        <a href="#events">Events</a>
+        <a href="https://luma.com/jlx" target="_blank" rel="noopener">Calendar on Luma</a>
+      </div>
+      <div class="foot-col">
+        <h4>Research</h4>
+        <a href="research.html">Future Skills report</a>
+        <a href="assets/future-skills-report.pdf">Download the PDF</a>
+        <a href="reading-list.html">Reading list</a>
+      </div>
+    </div>
+    <div class="foot-rule">
+      <div>Convened by <a href="https://jackrabbitlx.com" target="_blank" rel="noopener">Jackrabbit Learning Experience</a></div>
+      <div>&copy; 2026 · learningprofessionalscommunity.org</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

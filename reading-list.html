@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading list — The Learning Professionals Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --jlx-orange: #C2563B;
+    --jlx-purple: #0A4B46;
+    --jlx-mint: #C98A2E;
+    --jlx-navy: #0F6F68;
+    --jlx-charcoal: #10201F;
+    --jlx-light-gray: #F6F3ED;
+    --jlx-text: #10201F;
+    --jlx-muted: #5C6B69;
+    --jlx-white: #FFFFFF;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-main); background: var(--jlx-light-gray); color: var(--jlx-text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid var(--jlx-orange); }
+  .logo { font-weight: 800; font-size: 18px; color: var(--jlx-charcoal); letter-spacing: -0.01em; }
+  .logo .lx { color: var(--jlx-orange); }
+  .kicker { margin-left: auto; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--jlx-muted); font-weight: 700; }
+
+  .site-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px; }
+  .site-nav a { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--jlx-muted); padding: 7px 12px; border-radius: 4px; transition: background 0.15s, color 0.15s; }
+  .site-nav a:hover { background: var(--jlx-white); color: var(--jlx-charcoal); }
+  .site-nav a.current { background: var(--jlx-charcoal); color: var(--jlx-white); }
+
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--jlx-orange); margin-bottom: 10px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--jlx-charcoal); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 6px; }
+  .sub { font-size: 14px; color: var(--jlx-muted); margin-bottom: 28px; max-width: 640px; }
+
+  .tier { font-size: 10.5px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jlx-white); background: var(--jlx-charcoal); display: inline-block; padding: 5px 12px; border-radius: 3px; margin: 22px 0 12px; }
+  .tier:first-of-type { margin-top: 4px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { background: var(--jlx-white); border-radius: 6px; padding: 14px 16px 13px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border-top: 3px solid var(--jlx-orange); display: flex; flex-direction: column; gap: 3px; }
+  .card .pub { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--jlx-orange); }
+  .card .name { font-size: 14.5px; font-weight: 800; color: var(--jlx-charcoal); line-height: 1.3; }
+  .card .name a { color: var(--jlx-charcoal); text-decoration: none; }
+  .card .name a:hover { color: var(--jlx-orange); }
+  .card .name a::after { content: " ↗"; font-size: 11px; color: var(--jlx-orange); font-weight: 700; }
+  .card .desc { font-size: 12px; color: var(--jlx-muted); line-height: 1.5; }
+
+  .foot { font-size: 11px; color: var(--jlx-muted); letter-spacing: 0.04em; line-height: 1.6; text-align: center; margin-top: 40px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 24px; } }
+  @media print { body { background: #fff; } .site-nav { display: none; } .card { box-shadow: none; border: 1px solid #ddd; border-top: 3px solid var(--jlx-orange); break-inside: avoid; } .tier { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+  /* ---- Learning Professionals Community identity ---- */
+  body { font-size: 16px; }
+  h1, h2, h3, .headline { font-family: var(--font-display); letter-spacing: -0.02em; }
+  .hdr { border-bottom: 1px solid #E2DDD3; align-items: center; }
+  .brandmark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brandmark svg { width: 30px; height: 30px; flex-shrink: 0; }
+  .brandmark-text { font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.15; color: var(--jlx-charcoal); letter-spacing: -0.015em; }
+  .brandmark-text span { display: block; font-family: var(--font-main); font-size: 10px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--jlx-muted); margin-top: 2px; }
+  .site-nav a { font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; border-radius: 6px; }
+  .site-nav a.current { background: transparent; color: #0A4B46; font-weight: 600; }
+  .site-nav a.join { margin-left: auto; background: var(--jlx-orange); color: #fff; font-weight: 600; padding: 7px 15px; }
+  .site-nav a.join:hover { background: #9C4028; color: #fff; }
+  .foot a { color: var(--jlx-purple); }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <header class="hdr">
+    <a class="brandmark" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="#0F6F68"/>
+        <circle cx="11" cy="13" r="3.1" fill="#F6F3ED"/>
+        <circle cx="21" cy="13" r="3.1" fill="#C98A2E"/>
+        <circle cx="16" cy="21.5" r="3.1" fill="#C2563B"/>
+      </svg>
+      <span class="brandmark-text">Learning Professionals<span>Community</span></span>
+    </a>
+  </header>
+
+  <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="reading-list.html" class="current">Reading list</a>
+      <a href="index.html#join" class="join">Join</a>
+  </nav>
+
+  <div class="eyebrow">The Research Landscape</div>
+  <h1>Skills Reports Related to Learning Professionals</h1>
+  <p class="sub">A reading list of recent industry research (2024 to 2026), ordered from most to least directly about the skills of learning professionals. Our <a href="research.html">Future Skills survey</a> sits alongside this work; none of it asks practitioners what skills they believe they need next, which is the gap our research addresses.</p>
+
+  <div class="tier">Directly About Learning Professionals' Skills</div>
+  <div class="grid">
+    <div class="card">
+      <div class="pub">Donald H Taylor</div>
+      <div class="name"><a href="https://donaldhtaylor.co.uk/research_base/global-sentiment-survey-2026/">L&amp;D Global Sentiment Survey 2026</a></div>
+      <div class="desc">3,797 L&amp;D professionals across 105 countries. Established patterns breaking down; AI interest peaking.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Offbeat</div>
+      <div class="name"><a href="https://www.offbeat.works/l-d-industry-research">The State of L&amp;D Careers 2026</a></div>
+      <div class="desc">How learning professionals are navigating hiring, progression, anxiety, and what sustains the work.</div>
+    </div>
+    <div class="card">
+      <div class="pub">RedThread Research</div>
+      <div class="name"><a href="https://redthreadresearch.com/future-skills-for-lnd/">Future Skills for L&amp;D (2024)</a></div>
+      <div class="desc">300+ L&amp;D professionals surveyed; 39 future skills mapped across seven categories.</div>
+    </div>
+    <div class="card">
+      <div class="pub">ATD</div>
+      <div class="name"><a href="https://www.td.org/capability-model">Talent Development Capability Model</a></div>
+      <div class="desc">The association's framework of capabilities talent development professionals need; basis of its ongoing research.</div>
+    </div>
+    <div class="card">
+      <div class="pub">The Access Group</div>
+      <div class="name"><a href="https://www.theaccessgroup.com/en-gb/digital-learning/resources/the-future-of-ld-report-2025-ai-adaptation-and-skills-revolution/">The Future of L&amp;D Report 2025</a></div>
+      <div class="desc">How AI, adaptation, and the skills revolution are changing what L&amp;D teams must be able to do.</div>
+    </div>
+  </div>
+
+  <div class="tier">Workplace Learning &amp; Talent Development Trends</div>
+  <div class="grid">
+    <div class="card">
+      <div class="pub">LinkedIn Learning</div>
+      <div class="name"><a href="https://business.linkedin.com/learn/resources/workplace-learning-report">Workplace Learning Report 2025</a></div>
+      <div class="desc">L&amp;D leaders and learners on career development, AI integration, and the skills crisis.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Udemy Business</div>
+      <div class="name"><a href="https://business.udemy.com/2026-global-learning-skills-trends-report/">Global Learning &amp; Skills Trends 2026</a></div>
+      <div class="desc">Enterprise learning data: surging AI fluency demand balanced with human and interpersonal skills.</div>
+    </div>
+    <div class="card">
+      <div class="pub">ATD</div>
+      <div class="name"><a href="https://www.td.org/product/research-report--2025-state-of-the-industry-talent-development-benchmarks-and-trends/192507">2025 State of the Industry</a></div>
+      <div class="desc">Annual talent development spending and activity benchmarks from 539 organizations.</div>
+    </div>
+    <div class="card">
+      <div class="pub">The Josh Bersin Company</div>
+      <div class="name"><a href="https://joshbersin.com/2026/02/new-research-how-ai-transforms-400-billion-of-corporate-learning/">Corporate Learning in the Age of AI (2026)</a></div>
+      <div class="desc">Research across 800 organizations on AI reinventing the $400B corporate training market.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Burning Glass Institute</div>
+      <div class="name"><a href="https://www.burningglassinstitute.org/research">AI Fluency: The Most Important Skills Where AI Is Transforming Work (2025)</a></div>
+      <div class="desc">With the Skills-First Workforce Initiative; labor-market analytics on the skills AI fluency actually requires.</div>
+    </div>
+  </div>
+
+  <div class="tier">Broader Workforce &amp; Durable Skills Context</div>
+  <div class="grid">
+    <div class="card">
+      <div class="pub">America Succeeds</div>
+      <div class="name"><a href="https://americasucceeds.org/durable-by-design-why-skills-for-the-future-start-now">Durable by Design (July 2025)</a></div>
+      <div class="desc">Update on the high demand for durable skills, with Lightcast labor-market data.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Pathsmith · America Succeeds</div>
+      <div class="name"><a href="https://www.pathsmith.org">Pathsmith Durable Skills Framework</a></div>
+      <div class="desc">The Durable Skills Advantage framework and skills wheel for developing durable skills.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Lightcast</div>
+      <div class="name"><a href="https://lightcast.io/resources/research/the-rising-storm">The Rising Storm (2024)</a></div>
+      <div class="desc">Demographic Drought series; building a future-ready workforce against the looming labor shortage.</div>
+    </div>
+    <div class="card">
+      <div class="pub">World Economic Forum</div>
+      <div class="name"><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/">The Future of Jobs Report 2025</a></div>
+      <div class="desc">Global employer survey projecting 39% of key job skills changing by 2030.</div>
+    </div>
+    <div class="card">
+      <div class="pub">Coursera</div>
+      <div class="name"><a href="https://blog.coursera.org/genai-cybersecurity-and-data-ethics-the-worlds-fastest-growing-job-skills-for-2025">Job Skills Report 2025</a></div>
+      <div class="desc">Platform data on the fastest-growing skills: GenAI, cybersecurity, and data ethics.</div>
+    </div>
+  </div>
+
+  <p class="foot">The Learning Professionals Community · Convened by <a href="https://jackrabbitlx.com">Jackrabbit Learning Experience</a> · 2026</p>
+
+</div>
+</body>
+</html>
