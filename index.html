@@ -42,6 +42,13 @@
     margin-bottom: 20px;
   }
   .hero h1 em { font-style: normal; color: var(--clay); }
+  .hero h1 .together { color: var(--teal-deep); }
+  .sector-stat {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--teal-deep);
+    margin: 0 0 6px;
+  }
   .hero-lede {
     font-size: clamp(17px, 2vw, 20px);
     color: var(--ink-soft);
@@ -337,7 +344,7 @@
       <div class="hero-grid">
        <div class="hero-copy">
         <div class="hero-kicker">A cross-sector community, convened by Jackrabbit LX</div>
-        <h1>The learning profession has never had to change at this rate. <em>AI is only one of the reasons.</em> No one person has the answer, so we're working it out together.</h1>
+        <h1>The learning profession has never had to change at this rate. <em>AI is only one of the reasons.</em> <span class="together">No one person has the answer, so we're working it out together.</span></h1>
         <p class="hero-lede">
           Across corporate learning, higher education, K-12, consulting, association
           management, workforce development and customer education, we are asking the same
@@ -350,6 +357,8 @@
         <p class="hero-assure">A free Slack workspace, and it stays free.</p>
        </div>
       <figure class="sector-figure">
+        <p class="sector-stat">Established December 2025. Over <span
+          data-member-count>210</span> learning professionals.</p>
         <p class="sector-def">A learning professional is anyone whose job is helping other
           people get good at something.</p>
         <svg class="sector-ring" viewBox="-18 0 596 320" role="img"
