@@ -1,0 +1,39 @@
+name: Verify Slack token
+on: workflow_dispatch
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call auth.test and users.list
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.parse
+          tok = os.environ["SLACK_BOT_TOKEN"]
+          def call(method, **q):
+              url = "https://slack.com/api/" + method
+              if q: url += "?" + urllib.parse.urlencode(q)
+              req = urllib.request.Request(url, headers={"Authorization": "Bearer " + tok})
+              return json.load(urllib.request.urlopen(req))
+          a = call("auth.test")
+          print("auth.test ok:", a.get("ok"), "| team:", a.get("team"), "| error:", a.get("error"))
+          assert a.get("ok"), "token rejected by Slack"
+          cur, humans, emails = None, 0, 0
+          while True:
+              q = {"limit": 200}
+              if cur: q["cursor"] = cur
+              d = call("users.list", **q)
+              assert d.get("ok"), d.get("error")
+              for u in d["members"]:
+                  if u.get("is_bot") or u.get("deleted") or u.get("id") == "USLACKBOT":
+                      continue
+                  humans += 1
+                  if u.get("profile", {}).get("email"):
+                      emails += 1
+              cur = d.get("response_metadata", {}).get("next_cursor")
+              if not cur: break
+          print("active humans:", humans, "| with email:", emails)
+          print("rounded down:", (humans // 10) * 10)
+          PY
