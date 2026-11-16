@@ -296,30 +296,6 @@
   .form-card-head strong { font-family: var(--serif); font-size: 18px; font-weight: 600; display: block; }
   .form-card iframe { display: block; width: 100%; height: 1180px; border: 0; }
 
-  /* ---------- Join form (native embed) + post-submit ---------- */
-  .form-card .hs-form-host { padding: 20px 24px 26px; min-height: 120px; }
-  .form-card .hs-form-host form { font-family: var(--sans); }
-
-  .join-done { display: none; padding: 26px 24px 28px; }
-  .join-done.is-visible { display: block; }
-  .join-done h3 {
-    font-family: var(--serif); font-size: 23px; font-weight: 600;
-    color: var(--teal-deep); margin: 0 0 12px;
-  }
-  .join-done p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 18px; }
-  .join-done .btn { margin-bottom: 18px; }
-  .join-done-raw { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-  .join-done-raw span {
-    display: inline-block; margin-top: 7px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
-    color: var(--teal-deep); background: var(--teal-wash);
-    border-radius: 6px; padding: 8px 10px; word-break: break-all; line-height: 1.55;
-  }
-  .join-done-foot { font-size: 14px; color: var(--muted); margin-bottom: 0; }
-
-  .form-fallback { display: none; padding: 0 24px 26px; font-size: 14px; line-height: 1.6; color: var(--muted); }
-  .form-fallback.is-visible { display: block; }
-
   @media (max-width: 900px) {
     .join-layout { grid-template-columns: 1fr; gap: 32px; }
     .research-grid { grid-template-columns: 1fr; }
@@ -560,70 +536,7 @@
           <p class="form-card-note">You may know us as the AI Forum for Learning Professionals.
             Same community, new name. The form below still carries the old one while we
             update it.</p>
-          <div id="lpc-join-form" class="hs-form-host"></div>
-
-          <div id="lpc-joined" class="join-done" role="status" aria-live="polite">
-            <h3>You&rsquo;re in.</h3>
-            <p>The invitation email takes a few minutes and sometimes lands in Promotions.
-              No need to wait for it &mdash; this link goes straight to the Slack workspace.</p>
-            <a class="btn btn-primary" href="https://join.slack.com/t/learningprocommunity/shared_invite/zt-3sdyvrhlh-yixcZKLVzqgq_CuO7z72YQ" rel="noopener">Open the Slack community</a>
-            <p class="join-done-raw">Or paste this into your browser:<br>
-              <span>https://join.slack.com/t/learningprocommunity/shared_invite/zt-3sdyvrhlh-yixcZKLVzqgq_CuO7z72YQ</span></p>
-            <p class="join-done-foot">Over 210 learning professionals are already in there.
-              Say hello in <strong>#welcome-and-intros</strong> &mdash; that is where most people start.</p>
-          </div>
-
-          <p id="lpc-form-fallback" class="form-fallback">
-            Having trouble with the form?
-            <a href="https://2w05j.share.hsforms.com/2_YnFYihuTkyVH8qlJ3sFTg" target="_blank" rel="noopener">Open it in a new tab</a>.
-          </p>
-
-          <script src="https://js.hsforms.net/forms/embed/v2.js" charset="utf-8"></script>
-          <script>
-          (function () {
-            var HOST = 'lpc-join-form', DONE = 'lpc-joined', FALL = 'lpc-form-fallback';
-
-            function reveal() {
-              var host = document.getElementById(HOST),
-                  done = document.getElementById(DONE),
-                  fall = document.getElementById(FALL);
-              if (!host || !done) return;
-              host.style.display = 'none';
-              if (fall) fall.classList.remove('is-visible');
-              done.classList.add('is-visible');
-              try { done.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
-            }
-
-            function build() {
-              if (!window.hbspt || !window.hbspt.forms) return false;
-              window.hbspt.forms.create({
-                portalId: '4852423',
-                formId: 'fd89c562-286e-4e4c-951f-caa5277b054e',
-                region: 'na1',
-                target: '#' + HOST,
-                onFormSubmitted: reveal
-              });
-              return true;
-            }
-
-            // The form must always be the way in, so if the embed never loads we
-            // point at the hosted form, never straight at Slack.
-            function fallback() {
-              var host = document.getElementById(HOST),
-                  fall = document.getElementById(FALL);
-              if (host && host.querySelector('form')) return;
-              if (fall) fall.classList.add('is-visible');
-            }
-
-            if (!build()) {
-              var tries = 0;
-              var t = setInterval(function () {
-                if (build() || ++tries > 50) clearInterval(t);
-              }, 200);
-            }
-            setTimeout(fallback, 12000);
-          })();
-          </script>
+          <iframe src="https://2w05j.share.hsforms.com/2_YnFYihuTkyVH8qlJ3sFTg" title="Join the Learning Professionals Community" loading="lazy"></iframe>
         </div>
       </div>
     </div>
