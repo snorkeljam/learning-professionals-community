@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1200px; height:630px; background:#10201F; overflow:hidden;
+         font-family:'Inter',sans-serif; position:relative; }
+  .glow { position:absolute; inset:0;
+    background:
+      radial-gradient(820px 460px at 86% -18%, rgba(15,111,104,0.45), transparent 62%),
+      radial-gradient(640px 380px at -4% 112%, rgba(201,138,46,0.16), transparent 64%); }
+  .pad { position:absolute; inset:0; padding:70px 84px; display:flex; flex-direction:column;
+         justify-content:space-between; }
+  .kicker { font-family:'Source Serif 4',Georgia,serif; font-size:26px; color:#C98A2E; }
+  .kicker .sep { color:rgba(255,255,255,0.28); margin:0 14px; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:72px;
+       line-height:1.06; letter-spacing:-0.024em; color:#FFFFFF; max-width:14ch; margin-top:22px; }
+  h1 em { font-style:normal; color:#C98A2E; }
+  .facts { display:flex; gap:48px; border-top:1px solid rgba(255,255,255,0.14); padding-top:22px; }
+  .facts div { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:27px;
+               color:#FFFFFF; letter-spacing:-0.02em; }
+  .foot { display:flex; align-items:center; gap:13px; font-size:21px; color:#94A9A6;
+          margin-top:20px; }
+  .foot .sep { color:rgba(255,255,255,0.25); }
+  svg.mark { position:absolute; right:84px; top:70px; }
+</style></head>
+<body>
+  <div class="glow"></div>
+  <svg class="mark" width="124" height="124" viewBox="0 0 32 32">
+    <path d="M16.92 1.03A15 15 0 0 1 27.13 5.95L21.64 10.91A7.6 7.6 0 0 0 16.46 8.41Z" fill="#A1CFC6"/>
+    <path d="M28.28 7.38A15 15 0 0 1 30.8 18.44L23.5 17.24A7.6 7.6 0 0 0 22.22 11.63Z" fill="#7CBAAF"/>
+    <path d="M30.39 20.22A15 15 0 0 1 23.32 29.09L19.71 22.63A7.6 7.6 0 0 0 23.29 18.14Z" fill="#55A699"/>
+    <path d="M21.67 29.89A15 15 0 0 1 10.33 29.89L13.13 23.04A7.6 7.6 0 0 0 18.87 23.04Z" fill="#2A9183"/>
+    <path d="M8.68 29.09A15 15 0 0 1 1.61 20.22L8.71 18.14A7.6 7.6 0 0 0 12.29 22.63Z" fill="#007B6D"/>
+    <path d="M1.2 18.44A15 15 0 0 1 3.72 7.38L9.78 11.63A7.6 7.6 0 0 0 8.5 17.24Z" fill="#006659"/>
+    <path d="M4.87 5.95A15 15 0 0 1 15.08 1.03L15.54 8.41A7.6 7.6 0 0 0 10.36 10.91Z" fill="#005046"/>
+    <circle cx="16" cy="16" r="3.4" fill="#C2563B"/>
+  </svg>
+  <div class="pad">
+    <div>
+      <div class="kicker">Call for Proposals</div>
+      <h1>The Human Advantage in the Age of <em>AI</em></h1>
+    </div>
+    <div>
+      <div class="facts">
+        <div>Friday, June 11, 2027</div>
+        <div>New York City</div>
+        <div>All day</div>
+      </div>
+      <div class="foot">
+        <span>learningprofessionalscommunity.org/proposals</span>
+        <span class="sep">&middot;</span>
+        <span>Learning Professionals Community</span>
+      </div>
+    </div>
+  </div>
+</body></html>
