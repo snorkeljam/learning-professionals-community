@@ -1,0 +1,127 @@
+name: Refresh member count
+
+# Rewrites the data-member-count span on index.html from Slack's live roster.
+# Runs on GitHub's servers so it does not care whether the Mac is awake.
+# Step 2 of the loop (form-to-Slack reconciliation) is NOT here: it needs two
+# HubSpot contact properties that do not exist yet.
+
+on:
+  schedule:
+    - cron: '17 12 * * 1'   # Mondays, 12:17 UTC (7:17am ET)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Report the number without committing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count active humans and rewrite the span
+        id: count
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys, urllib.request, urllib.parse
+
+          tok = os.environ["SLACK_BOT_TOKEN"]
+
+          def call(method, **q):
+              url = "https://slack.com/api/" + method
+              if q:
+                  url += "?" + urllib.parse.urlencode(q)
+              req = urllib.request.Request(url, headers={"Authorization": "Bearer " + tok})
+              return json.load(urllib.request.urlopen(req))
+
+          auth = call("auth.test")
+          if not auth.get("ok"):
+              sys.exit("Slack rejected the token: %s" % auth.get("error"))
+          print("team:", auth.get("team"))
+
+          # Active humans only: no bots, no deactivated accounts, no guests.
+          cur, humans = None, 0
+          while True:
+              q = {"limit": 200}
+              if cur:
+                  q["cursor"] = cur
+              d = call("users.list", **q)
+              if not d.get("ok"):
+                  sys.exit("users.list failed: %s" % d.get("error"))
+              for u in d["members"]:
+                  if u.get("is_bot") or u.get("deleted") or u.get("id") == "USLACKBOT":
+                      continue
+                  if u.get("is_restricted") or u.get("is_ultra_restricted"):
+                      continue
+                  humans += 1
+              cur = d.get("response_metadata", {}).get("next_cursor")
+              if not cur:
+                  break
+
+          print("active humans:", humans)
+
+          # A floor, not a business rule. The workspace has been over 200 since
+          # November 2025, so anything under 100 is a broken call or a scope
+          # change, and writing it to the live page would be worse than skipping.
+          if humans < 100:
+              sys.exit("Refusing to publish an implausible count: %d" % humans)
+
+          # Round down to the nearest ten, and step down again on an exact
+          # multiple so the sentence "Over N" stays literally true.
+          shown = ((humans - 1) // 10) * 10
+          print("will show:", shown)
+
+          path = "index.html"
+          with open(path, encoding="utf-8") as fh:
+              html = fh.read()
+
+          pattern = re.compile(r"(data-member-count>)\s*(\d+)\s*(</span>)")
+          match = pattern.search(html)
+          if not match:
+              sys.exit("No data-member-count span found in index.html")
+
+          current = int(match.group(2))
+          print("currently on the page:", current)
+
+          out = os.environ["GITHUB_OUTPUT"]
+          if current == shown:
+              print("No change.")
+              with open(out, "a") as fh:
+                  fh.write("changed=false\n")
+                  fh.write("shown=%d\n" % shown)
+                  fh.write("humans=%d\n" % humans)
+              sys.exit(0)
+
+          with open(path, "w", encoding="utf-8") as fh:
+              fh.write(pattern.sub(r"\g<1>%d\g<3>" % shown, html, count=1))
+
+          with open(out, "a") as fh:
+              fh.write("changed=true\n")
+              fh.write("shown=%d\n" % shown)
+              fh.write("humans=%d\n" % humans)
+              fh.write("previous=%d\n" % current)
+          PY
+
+      - name: Commit the new number
+        if: steps.count.outputs.changed == 'true' && inputs.dry_run != true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m "Member count: ${{ steps.count.outputs.previous }} to ${{ steps.count.outputs.shown }} (${{ steps.count.outputs.humans }} active humans)"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "Active humans: ${{ steps.count.outputs.humans }}" >> $GITHUB_STEP_SUMMARY
+          echo "Shown on the page: ${{ steps.count.outputs.shown }}" >> $GITHUB_STEP_SUMMARY
+          echo "Changed: ${{ steps.count.outputs.changed }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ inputs.dry_run }}" = "true" ]; then echo "Dry run, nothing committed." >> $GITHUB_STEP_SUMMARY; fi
