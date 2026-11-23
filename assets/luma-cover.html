@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1200px; height:1200px; background:#10201F; overflow:hidden;
+         font-family:'Inter',sans-serif; position:relative; }
+  .glow { position:absolute; inset:0;
+    background:
+      radial-gradient(900px 760px at 86% -12%, rgba(15,111,104,0.50), transparent 62%),
+      radial-gradient(760px 620px at -6% 108%, rgba(201,138,46,0.20), transparent 64%); }
+  .pad { position:absolute; inset:0; padding:92px 84px; display:flex; flex-direction:column;
+         justify-content:space-between; }
+  .pad > div:first-of-type { flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .date {
+    font-family:'Source Serif 4',Georgia,serif; font-size:34px; font-weight:600;
+    color:#C98A2E; letter-spacing:-0.01em; }
+  .date .sep { color:rgba(255,255,255,0.26); margin:0 16px; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:100px;
+       line-height:1.04; letter-spacing:-0.028em; color:#FFFFFF; max-width:11ch; margin-top:40px; }
+  h1 em { font-style:normal; color:#C98A2E; }
+  .sub { font-size:28px; color:#AFC3C0; margin-top:42px; max-width:34ch; line-height:1.5; }
+  .foot { display:flex; align-items:center; justify-content:space-between; gap:24px;
+          border-top:1px solid rgba(255,255,255,0.15); padding-top:28px; }
+  .who { display:flex; align-items:center; gap:20px; }
+  .who .name { font-family:'Source Serif 4',Georgia,serif; font-size:30px; font-weight:600; color:#fff; }
+  .who .by { font-size:21px; color:#8FA5A2; margin-top:4px; }
+</style></head>
+<body>
+  <div class="glow"></div>
+  <div class="pad">
+    <div>
+      <div class="date">Friday, June 11, 2027<span class="sep">/</span>New York City</div>
+      <h1>The Human Advantage in the Age of <em>AI</em></h1>
+      <div class="sub">One full day, about 100 learning professionals, every sector in one room.</div>
+    </div>
+    <div class="foot">
+      <div class="who">
+        <svg width="78" height="78" viewBox="0 0 32 32">
+          <path d="M16.92 1.03A15 15 0 0 1 27.13 5.95L21.64 10.91A7.6 7.6 0 0 0 16.46 8.41Z" fill="#A1CFC6"/>
+          <path d="M28.28 7.38A15 15 0 0 1 30.8 18.44L23.5 17.24A7.6 7.6 0 0 0 22.22 11.63Z" fill="#7CBAAF"/>
+          <path d="M30.39 20.22A15 15 0 0 1 23.32 29.09L19.71 22.63A7.6 7.6 0 0 0 23.29 18.14Z" fill="#55A699"/>
+          <path d="M21.67 29.89A15 15 0 0 1 10.33 29.89L13.13 23.04A7.6 7.6 0 0 0 18.87 23.04Z" fill="#2A9183"/>
+          <path d="M8.68 29.09A15 15 0 0 1 1.61 20.22L8.71 18.14A7.6 7.6 0 0 0 12.29 22.63Z" fill="#007B6D"/>
+          <path d="M1.2 18.44A15 15 0 0 1 3.72 7.38L9.78 11.63A7.6 7.6 0 0 0 8.5 17.24Z" fill="#006659"/>
+          <path d="M4.87 5.95A15 15 0 0 1 15.08 1.03L15.54 8.41A7.6 7.6 0 0 0 10.36 10.91Z" fill="#005046"/>
+          <circle cx="16" cy="16" r="3.4" fill="#C2563B"/>
+        </svg>
+        <div>
+          <div class="name">Learning Professionals Community</div>
+          <div class="by">Convened by Jackrabbit Learning Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body></html>
