@@ -1,1 +1,8 @@
 .DS_Store
+
+# The project session log. Deliberately NOT tracked: this repo is public, and
+# the log carries member names, addresses and internal commentary. It lives on
+# disk in the iCloud-synced tree (so both Macs see it and it still auto-loads
+# as session context) and is mirrored to the project's Google Drive folder.
+# Same convention as Projects/Story As Database/CLAUDE.md. Do not commit it.
+CLAUDE.md
